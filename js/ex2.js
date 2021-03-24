@@ -36,12 +36,10 @@ inputField.addEventListener("keydown", e => {
     
     
     const suggestions = document.getElementById("suggestions");
-    
-    while (suggestions.firstChild) {
-        suggestions.removeChild(suggestions.firstChild);
-    }
 
+    suggestions.innerHTML = "";
     
+
     for (i = 0; i < arr.length; i++) {
       
       if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {

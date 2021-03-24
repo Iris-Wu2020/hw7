@@ -50,9 +50,11 @@ window.addEventListener("load", e => {
 })
 
 
+
 dropDown.addEventListener("change", e => {
     const ulNode = document.getElementById("characters");
     const charactersList = getCharacters(e.target.value);
+    ulNode.innerHTML = "";
     charactersList.forEach(element => {
         const liNode = document.createElement("li");
         const chaText = document.createTextNode(element);
