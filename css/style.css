@@ -9,12 +9,14 @@
 }
 
 /* Change suggestion color when hovering it with the mouse */
+/* here the suggestion is class */
 .suggestion:hover {
     background-color: #adf;
     cursor: pointer;
 }
 
 /* Position the suggestion list just below the input box */
+/* here the suggestion is id */
 #suggestions {
     position: absolute;
     border: 1px solid black;

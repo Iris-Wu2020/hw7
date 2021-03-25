@@ -3,54 +3,50 @@
 console.log("Wu's Output from Exercise 2");
 // Country list
 const countryList = [
-    "Afghanistan",
-    "Albania",
-    "Algeria",
-    "Andorra",
-    "Angola",
-    "Anguilla",
-    "Antarctica",
-    "Antigua-and-Barbuda",
-    "Argentina",
-    "Armenia",
-    "Aruba",
-    "Australia",
-    "Autria",
-    "Azerbaïjan"
-  ];
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Anguilla",
+  "Antarctica",
+  "Antigua-and-Barbuda",
+  "Argentina",
+  "Armenia",
+  "Aruba",
+  "Australia",
+  "Autria",
+  "Azerbaïjan"
+];
 
-  
+
 
 const inputField = document.getElementById("country");
-const arr = countryList;
+const currentInput = inputField.value;
+let val = currentInput;
 
 inputField.addEventListener("keydown", e => {
-    const newChar = e.key;
-    const currentInput =  inputField.value;
-    let val = currentInput;
-    if (newChar !== "Backspace") {
-        val += newChar;
-    } else {
-        val = val.substr(0, val.length - 1);
-    }
-    
-    
-    const suggestions = document.getElementById("suggestions");
+  const newChar = e.key;
+  const suggestions = document.getElementById("suggestions");
+  suggestions.innerHTML = "";
 
-    suggestions.innerHTML = "";
-    
 
-    for (i = 0; i < arr.length; i++) {
-      
-      if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-        
-        const divNode = document.createElement("div");
-        
-        divNode.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-        divNode.innerHTML += arr[i].substr(val.length);
-                
-        suggestions.appendChild(divNode);
-      }
-    }
+  if (newChar !== "Backspace") {
+    val += newChar;
+  } else {
+    val = val.substr(0, val.length - 1);
+  }
+
+  const countryArray = countryList.filter(country => country.toLowerCase().startsWith(val.toLowerCase()));
+  //console.log(countryArray);
+  countryArray.forEach(country => {
+    const divNode = document.createElement("div");
+    divNode.textContent = country;
+    divNode.classList = "suggestion";
+    divNode.addEventListener("click", eCountry =>{
+      document.getElementById("country").value = eCountry.target.textContent;
+    })
+    suggestions.appendChild(divNode);
+  });
 });
-  
+
